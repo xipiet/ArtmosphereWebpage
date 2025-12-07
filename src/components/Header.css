@@ -33,13 +33,13 @@
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  padding: 0.5rem 2rem;
+  padding: 0.25rem 2rem;
   flex: 0 0 auto;
   height: 100%;
 }
 
 .header-logo-image {
-  height: 100px;
+  height: 80px;
   width: auto;
   object-fit: contain;
   max-width: 95%;
@@ -50,7 +50,7 @@
   gap: 2rem;
   list-style: none;
   margin: 0;
-  padding: 0.5rem 2rem;
+  padding: 0.25rem 2rem;
   align-items: center;
   height: 100%;
 }
