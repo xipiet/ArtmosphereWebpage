@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, lazy, Suspense } from 'react';
 import Plasma from './components/Plasma';
 import Header from './components/Header';
 import { Gallery, About, HowItWorks, Events } from './components/Sections';

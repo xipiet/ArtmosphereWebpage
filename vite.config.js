@@ -6,6 +6,21 @@ export default defineConfig({
   server: {
     port: 5173,
     open: false,
-    allowedHosts: ['web.artmosphere.duckdns.org']
+    allowedHosts: ['web.artmosphere.duckdns.org'],
+    compression: 'gzip'
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'plasma': ['./src/components/Plasma.jsx'],
+          'vendor': ['react', 'react-dom', 'gsap', 'ogl']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'gsap', 'ogl']
   }
 })
