@@ -4,18 +4,41 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  background: #1a1a1a;
 }
 
 #root {
   width: 100%;
-  height: 100%;
 }
 
 .App {
   width: 100%;
-  height: 100%;
+  background: #1a1a1a;
 }
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(132, 0, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8400ff, #ff00ff);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #a020f0, #ff00ff);
+}
+
