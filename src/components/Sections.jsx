@@ -151,8 +151,8 @@ const HowItWorks = () => {
 const Events = () => {
   const nextEvent = {
     date: 'xx.xx.2026',
-    time: '16-22',
-    location: 'TH NBG',
+    time: '16:00-22:00',
+    location: 'TH Nbg',
     tickets: 'Available'
   };
 
