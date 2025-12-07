@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Plasma from './components/Plasma';
 import Header from './components/Header';
 import { Gallery, About, HowItWorks, Events } from './components/Sections';
-import MagicBento from './components/MagicBento';
+import AboutUs from './components/AboutUs';
 import './App.css';
 
 function App() {
@@ -42,32 +42,8 @@ function App() {
       <div style={{ background: '#1a1a1a', position: 'relative', zIndex: 5 }}>
         <Gallery />
         <About />
-        
-        {/* Process Section with Bento Cards */}
-        <section id="process" style={{ minHeight: '100vh', padding: '6rem 2rem 4rem', position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, rgba(6, 0, 16, 0.5), rgba(26, 26, 26, 0.3))' }}>
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#fff', marginBottom: '3rem', textAlign: 'center', position: 'relative', display: 'inline-block', width: '100%', background: 'linear-gradient(135deg, #8400ff, #ff00ff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
-              Our Features
-              <div style={{ position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)', width: '60px', height: '3px', background: 'linear-gradient(90deg, #8400ff, #ff00ff)', borderRadius: '2px' }}></div>
-            </h2>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <MagicBento 
-                textAutoHide={true}
-                enableStars={true}
-                enableSpotlight={true}
-                enableBorderGlow={true}
-                enableTilt={true}
-                enableMagnetism={true}
-                clickEffect={true}
-                spotlightRadius={300}
-                particleCount={12}
-                glowColor="132, 0, 255"
-              />
-            </div>
-          </div>
-        </section>
-
         <HowItWorks />
+        <AboutUs />
         <Events />
       </div>
     </div>

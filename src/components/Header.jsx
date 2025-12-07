@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
+import logo from '../logo.png';
 
 const Header = ({ scrollToSection }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -33,8 +34,7 @@ const Header = ({ scrollToSection }) => {
     <header className={`header ${isVisible ? 'header--visible' : 'header--hidden'}`}>
       <div className="header-content">
         <div className="header-logo">
-          <h1>ARTMOSPHERE</h1>
-          <p className="header-subtitle">Immersive Art Installation</p>
+          <img src={logo} alt="Artmosphere Logo" className="header-logo-image" />
         </div>
         
         <nav className="header-nav">
@@ -44,8 +44,8 @@ const Header = ({ scrollToSection }) => {
           <button onClick={() => scrollToSection('about')} className="nav-link">
             About
           </button>
-          <button onClick={() => scrollToSection('process')} className="nav-link">
-            Process
+          <button onClick={() => scrollToSection('about-us')} className="nav-link">
+            About Us
           </button>
           <button onClick={() => scrollToSection('howitworks')} className="nav-link">
             How It Works

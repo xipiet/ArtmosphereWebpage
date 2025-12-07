@@ -150,9 +150,9 @@ const HowItWorks = () => {
 
 const Events = () => {
   const nextEvent = {
-    date: 'December 15, 2025',
-    time: '19:00 - 23:00',
-    location: 'Berlin Art Space',
+    date: 'xx.xx.2026',
+    time: '16-22',
+    location: 'TH NBG',
     tickets: 'Available'
   };
 
