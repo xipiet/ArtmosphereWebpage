@@ -34,7 +34,9 @@ const Header = ({ scrollToSection }) => {
     <header className={`header ${isVisible ? 'header--visible' : 'header--hidden'}`}>
       <div className="header-content">
         <div className="header-logo">
-          <img src={logo} alt="Artmosphere Logo" className="header-logo-image" />
+          <a href="https://github.com/xipiet/ArtmosphereWebpage" target="_blank" rel="noopener noreferrer">
+            <img src={logo} alt="Artmosphere Logo" className="header-logo-image" />
+          </a>
         </div>
         
         <nav className="header-nav">
