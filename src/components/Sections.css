@@ -4,7 +4,7 @@
 
 .page-section {
   min-height: 100vh;
-  padding: 6rem 2rem 4rem;
+  padding: 4rem 2rem 3rem;
   position: relative;
   z-index: 1;
   font-family: var(--font-stack);
