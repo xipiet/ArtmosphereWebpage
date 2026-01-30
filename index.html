@@ -5,9 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artmosphere</title>
     <link rel="icon" href="/src/logo.png" type="image/png">
+    <link rel="stylesheet" href="/src/main.css">
 </head>
 <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- Header Navigation -->
+    <header id="header" class="header header--visible">
+        <div class="header-content">
+            <div class="header-logo">
+                <a href="https://github.com/xipiet/ArtmosphereWebpage" target="_blank" rel="noopener noreferrer">
+                    <img src="/src/logo.png" alt="Artmosphere Logo" class="header-logo-image" />
+                </a>
+            </div>
+            
+            <nav class="header-nav" id="header-nav">
+                <button class="nav-link" data-section="gallery">Gallery</button>
+                <button class="nav-link" data-section="about">About</button>
+                <button class="nav-link" data-section="about-us">About Us</button>
+                <button class="nav-link" data-section="howitworks">How It Works</button>
+                <button class="nav-link" data-section="events">Events</button>
+            </nav>
+
+            <button class="burger-menu" id="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="header-divider"></div>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero-section">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="/background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h2 class="hero-subtitle">Welcome to</h2>
+            <h1 class="hero-title">ARTMOSPHERE</h1>
+            <p class="hero-description">Immersive art installation experience where individual creativity forms a single evolving artwork.</p>
+            <button class="hero-button" data-section="gallery">Explore Gallery</button>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="page-section gallery-section">
+        <div class="section-container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="carousel-container">
+                <div class="carousel-main">
+                    <img id="carousel-image" src="/pictures/Sketch-Aquarium__high-1-scaled-1600x900.jpg" alt="Gallery" class="carousel-image">
+                    <div class="carousel-overlay"></div>
+                </div>
+                
+                <button class="carousel-button carousel-button--prev" id="carousel-prev">◀</button>
+                <button class="carousel-button carousel-button--next" id="carousel-next">▶</button>
+
+                <div class="carousel-indicators" id="carousel-indicators"></div>
+                <div class="carousel-counter" id="carousel-counter">1 / 5</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="page-section about-section">
+        <div class="section-container">
+            <h2 class="section-title">About Artmosphere</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Artmosphere ist eine immersive Kunstinstallation, die Besucher in eine Welt aus Licht, Farbe und interaktiven Elementen entführt.
+                    </p>
+                    <p>
+                        <strong>Das Konzept:</strong> Eine Projektion an die Wände schafft eine sich ständig verändernde visuelle Landschaft. Besucher können mit iPads direkt in die Installation eintreten und ihre eigenen digitalen Gemälde zeichnen.
+                    </p>
+                    <p>
+                        Jedes gezeichnete Kunstwerk wird automatisch auf die projizierte Leinwand übertragen und wird Teil eines größeren, gemeinsam erschafften Werks. Alle Beiträge verschmelzen zu einem zusammenhängenden Bild, wo jeder Besucher sichtbar seinen Platz hat.
+                    </p>
+                    <p>
+                        So entsteht eine einzigartige Erfahrung: Ihr persönliches Kunstwerk wird Teil einer größeren, lebendigen Installation.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h4>500+</h4>
+                        <p>Besucher pro Event</p>
+                    </div>
+                    <div class="stat">
+                        <h4>∞</h4>
+                        <p>Kunstwerke</p>
+                    </div>
+                    <div class="stat">
+                        <h4>1</h4>
+                        <p>Gemeinsames Meisterwerk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-us" class="page-section about-us-section">
+        <div class="about-us-container">
+            <h2 class="about-us-title">About Us</h2>
+            
+            <div class="about-us-content">
+                <div class="about-us-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5.</div>
+                        <div class="stat-label">Semester</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Entwickler</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Möglichkeiten</div>
+                    </div>
+                </div>
+
+                <div class="about-us-text">
+                    <p>
+                        Wir sind <strong>sechs Entwickler</strong> im <strong>5. Semester</strong> an der <strong>Technischen Hochschule Nürnberg Georg Simon Ohm</strong>.
+                    </p>
+                    
+                    <p>
+                        Zusammen mit dem Kollektiv <strong>"Orakel von Nürnberg"</strong> und unter der Betreuung von <strong>Prof. Schedel</strong> haben wir <strong>Artmosphere</strong> erschaffen.
+                    </p>
+                    
+                    <p>
+                        Artmosphere verkörpert <strong>die Kunst der Zukunft</strong>. Es stellt traditionelle Vorstellungen von Kreation in Frage, indem es individuelle Ausdrucksformen in ein kollektives Meisterwerk verwandelt. Jeden Besucher machen wir zum Co-Creator, der seine einzigartige Vision zu einer sich ständig verändernden digitalen Leinwand beiträgt.
+                    </p>
+                    
+                    <p>
+                        Unsere Vision ist es, immersive Erfahrungen zu schaffen, die die Lücke zwischen menschlicher Kreativität und digitaler Technologie überbrücken und beweisen, dass Kunst in der modernen Zeit nicht etwas ist, das wir konsumieren, sondern etwas, das wir gemeinsam erschaffen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="howitworks" class="page-section howitworks-section">
+        <div class="section-container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Enter</h3>
+                    <p>Betreten Sie den installierten Raum mit der Live-Projektion</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Create</h3>
+                    <p>Nehmen Sie ein iPad und zeichnen Sie Ihr Kunstwerk</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Upload</h3>
+                    <p>Ihr Gemälde wird automatisch auf die Leinwand übertragen</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <h3>Together</h3>
+                    <p>Sehen Sie, wie Ihr Werk mit anderen verschmilzt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="page-section events-section">
+        <div class="section-container">
+            <h2 class="section-title">Next Event</h2>
+            <div class="event-card">
+                <div class="event-detail">
+                    <h3>Artmosphere Experience</h3>
+                    <div class="event-info">
+                        <div class="info-item">
+                            <span class="label">Date</span>
+                            <span class="value">xx.xx.2026</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Time</span>
+                            <span class="value">16:00-22:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Location</span>
+                            <span class="value">TH Nbg</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Status</span>
+                            <span class="value status-available">Available</span>
+                        </div>
+                    </div>
+                    <button class="event-button">Get Tickets</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/src/main.js"></script>
 </body>
 </html>
