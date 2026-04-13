@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     port: 5173,
     open: false,
-    allowedHosts: ['web.artmosphere.duckdns.org'],
+    allowedHosts: ['web.artmosphere.duckdns.org', 'web.artmosphere.cc'],
     compression: 'gzip'
   },
   build: {
