@@ -150,10 +150,10 @@ const HowItWorks = () => {
 
 const Events = () => {
   const nextEvent = {
-    date: 'xx.xx.2026',
-    time: '16:00-22:00',
+    date: '14.07.2026',
+    time: '14:00 Uhr',
     location: 'TH Nbg',
-    tickets: 'Available'
+    status: 'Open Entry'
   };
 
   return (
@@ -176,10 +176,9 @@ const Events = () => {
             </div>
             <div className="info-item">
               <span className="label">Status</span>
-              <span className="value status-available">{nextEvent.tickets}</span>
+              <span className="value status-available">{nextEvent.status}</span>
             </div>
           </div>
-          <button className="event-button">Get Tickets</button>
         </div>
       </div>
     </Section>
