@@ -14,6 +14,11 @@
 `npm run dev` ist nur zum Entwickeln und gehört **nicht** auf den Server: Der Dev-Server liefert das ganze Projekt aus, auch `.git`. <br/>
 Bilder und Videos, die per Pfad eingebunden sind (`/pictures/...`), gehören nach `public/`, sonst fehlen sie im Build. <br/>
 
+## Events eintragen
+
+- Termine stehen in `src/events.js`, danach auf dem Server updaten (siehe unten) <br/>
+- Ob ein Event oben bei „Next Events“ oder unten bei „Past Events“ steht, ergibt sich automatisch aus dem Datum <br/>
+
 ## Aufsetzen auf dem Server
 
 Die Seite wird mit `npm run build` gebaut, nginx liefert nur den Ordner `dist/` aus. <br/>

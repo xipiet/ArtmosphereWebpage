@@ -1,3 +1,5 @@
+import { events } from './events.js';
+
 // Gallery Images
 const images = [
   '/pictures/galerie-1.jpg',
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initHeaderScroll();
   initBurgerMenu();
+  initEvents();
 });
 
 // ============== CAROUSEL ==============
@@ -176,4 +179,89 @@ function initBurgerMenu() {
     burgerMenu.classList.remove('active');
     headerNav.classList.remove('active');
   });
+}
+
+// ============== EVENTS ==============
+function initEvents() {
+  const upcomingContainer = document.getElementById('events-upcoming');
+  const pastContainer = document.getElementById('events-past');
+  const pastTitle = document.getElementById('events-past-title');
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const isPast = (event) => parseDate(event.end ?? event.start) < today;
+
+  const upcoming = events
+    .filter(event => !isPast(event))
+    .sort((a, b) => parseDate(a.start) - parseDate(b.start));
+  const past = events
+    .filter(isPast)
+    .sort((a, b) => parseDate(b.start) - parseDate(a.start));
+
+  if (upcoming.length === 0) {
+    upcomingContainer.appendChild(createElement('p', 'events-empty', 'Neue Termine folgen bald.'));
+  }
+  upcoming.forEach(event => upcomingContainer.appendChild(createEventCard(event)));
+
+  pastTitle.hidden = past.length === 0;
+  past.forEach(event => pastContainer.appendChild(createPastEventCard(event)));
+}
+
+function createEventCard(event) {
+  const card = createElement('div', 'event-card');
+  const detail = createElement('div', 'event-detail');
+  detail.appendChild(createElement('h3', null, event.title));
+  if (event.description) {
+    detail.appendChild(createElement('p', 'event-description', event.description));
+  }
+
+  const info = createElement('div', 'event-info');
+  [
+    ['Date', formatDateRange(event)],
+    ['Time', event.time],
+    ['Location', event.location],
+    ['Status', event.status]
+  ].forEach(([label, value]) => {
+    if (!value) return;
+    const item = createElement('div', 'info-item');
+    item.appendChild(createElement('span', 'label', label));
+    item.appendChild(createElement('span', label === 'Status' ? 'value status-available' : 'value', value));
+    info.appendChild(item);
+  });
+
+  detail.appendChild(info);
+  card.appendChild(detail);
+  return card;
+}
+
+function createPastEventCard(event) {
+  const card = createElement('div', 'past-event');
+  card.appendChild(createElement('span', 'past-event-date', formatDateRange(event)));
+  card.appendChild(createElement('h4', null, event.title));
+  card.appendChild(createElement('p', null, event.location));
+  return card;
+}
+
+function createElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text) element.textContent = text;
+  return element;
+}
+
+// 'JJJJ-MM-TT' als lokales Datum (new Date('JJJJ-MM-TT') wäre UTC)
+function parseDate(isoDate) {
+  const [year, month, day] = isoDate.split('-').map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function formatDateRange(event) {
+  const [startYear, startMonth, startDay] = event.start.split('-');
+  if (!event.end) return `${startDay}.${startMonth}.${startYear}`;
+
+  const [endYear, endMonth, endDay] = event.end.split('-');
+  const startText = startYear === endYear
+    ? `${startDay}.${startMonth}.`
+    : `${startDay}.${startMonth}.${startYear}`;
+  return `${startText} – ${endDay}.${endMonth}.${endYear}`;
 }
