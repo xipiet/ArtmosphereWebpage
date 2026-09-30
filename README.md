@@ -1,7 +1,7 @@
 # Artmosphere - Orakel
 
 - Web-Auftritt von Artmosphere <br/>
-- Statische Seite: `index.html`, `src/main.js`, `src/main.css`, gebaut mit Vite <br/>
+- Statische Seite: `index.html`, `src/main.js`, `src/main.css`, `src/events.js`, gebaut mit Vite <br/>
 
 ## Lokal entwickeln
 
@@ -21,27 +21,36 @@ Bilder und Videos, die per Pfad eingebunden sind (`/pictures/...`), gehören nac
 
 ## Aufsetzen auf dem Server
 
-Die Seite wird mit `npm run build` gebaut, nginx liefert nur den Ordner `dist/` aus. <br/>
+Die Seite wird mit `npm run build` gebaut. Ein systemd-Service startet `serve`, der nur den Ordner `dist/` auf Port 3000 ausliefert (Einstellungen in `serve.json`). <br/>
 
-- apt install -y git nginx curl <br/>
+- apt install -y git curl <br/>
 - curl -fsSL https://deb.nodesource.com/setup_24.x | bash - <br/>
 - apt install -y nodejs <br/>
 - git clone https://github.com/xipiet/ArtmosphereWebpage.git /opt/artmosphere <br/>
 - cd /opt/artmosphere <br/>
 - npm ci <br/>
 - npm run build <br/>
-- Inhalt von `/etc/nginx/sites-available/default` ersetzen durch:
+- `/etc/systemd/system/artmosphere.service` anlegen:
 
-```nginx
-server {
-    listen 80 default_server;
-    root /opt/artmosphere/dist;
-    index index.html;
-}
+```ini
+[Unit]
+Description=Artmosphere Webseite
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/artmosphere
+ExecStart=/opt/artmosphere/node_modules/.bin/serve -l 3000 -L --no-port-switching
+Environment=NO_UPDATE_CHECK=1
+User=www-data
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-- systemctl reload nginx <br/>
-- Nginx Proxy Manager: `web.artmosphere.cc` → `http://<IP>:80` <br/>
+- systemctl daemon-reload <br/>
+- systemctl enable --now artmosphere <br/>
+- Nginx Proxy Manager: `web.artmosphere.cc` → `http://<IP>:3000` <br/>
 
 ## Update
 
@@ -49,3 +58,4 @@ server {
 - git pull <br/>
 - npm ci <br/>
 - npm run build <br/>
+- systemctl restart artmosphere <br/>
