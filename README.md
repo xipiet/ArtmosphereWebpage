@@ -1,53 +1,61 @@
 # Artmosphere - Orakel
 
 - Web-Auftritt von Artmosphere <br/>
+- Statische Seite: `index.html`, `src/main.js`, `src/main.css`, `src/events.js`, gebaut mit Vite <br/>
 
-## Installation
+## Lokal entwickeln
 
-- git clone <br/>
+- Node 24 installieren <br/>
+- git clone https://github.com/xipiet/ArtmosphereWebpage.git <br/>
 - cd ArtmosphereWebpage <br/>
-- Node & npm installieren  <br/>
-- curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-- sudo apt install -y nodejs
-- npm init -y <br/>
 - npm install <br/>
-- npm install ogl <br/>
-- npm install gsap <br/>
-(sollte die benutzten packages automatisch installieren, ansonsten manuell)  <br/>
-- npm run dev -- --host <br/>
+- npm run dev <br/>
 
-### Aufsetzen auf dem Host
+`npm run dev` ist nur zum Entwickeln und gehört **nicht** auf den Server: Der Dev-Server liefert das ganze Projekt aus, auch `.git`. <br/>
+Bilder und Videos, die per Pfad eingebunden sind (`/pictures/...`), gehören nach `public/`, sonst fehlen sie im Build. <br/>
 
-Läuft als systemd-Service `vite-dev` auf Port 5173. <br/>
+## Events eintragen
 
-- Repo nach `/root` klonen: `git clone https://github.com/xipiet/ArtmosphereWebpage.git`, dann Node + `npm install` wie oben <br/>
-- `/etc/systemd/system/vite-dev.service` anlegen:
+- Termine stehen in `src/events.js`, danach auf dem Server updaten (siehe unten) <br/>
+- Ob ein Event oben bei „Next Events“ oder unten bei „Past Events“ steht, ergibt sich automatisch aus dem Datum <br/>
+
+## Aufsetzen auf dem Server
+
+Die Seite wird mit `npm run build` gebaut. Ein systemd-Service startet `serve`, der nur den Ordner `dist/` auf Port 3000 ausliefert (Einstellungen in `serve.json`). <br/>
+
+- apt install -y git curl <br/>
+- curl -fsSL https://deb.nodesource.com/setup_24.x | bash - <br/>
+- apt install -y nodejs <br/>
+- git clone https://github.com/xipiet/ArtmosphereWebpage.git /opt/artmosphere <br/>
+- cd /opt/artmosphere <br/>
+- npm ci <br/>
+- npm run build <br/>
+- `/etc/systemd/system/artmosphere.service` anlegen:
 
 ```ini
 [Unit]
-Description=ViteDevServer
+Description=Artmosphere Webseite
 After=network.target
 
 [Service]
-Type=simple
-User=root
-WorkingDirectory=/root/ArtmosphereWebpage
-ExecStart=/usr/bin/npm run dev -- --host
+WorkingDirectory=/opt/artmosphere
+ExecStart=/opt/artmosphere/node_modules/.bin/serve -l 3000 -L --no-port-switching
+Environment=NO_UPDATE_CHECK=1
+User=www-data
 Restart=always
-Environment=NODE_ENV=development
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-- sudo systemctl daemon-reload <br/>
-- sudo systemctl enable --now vite-dev <br/>
-- Nginx Proxy Manager: `web.artmosphere.cc` → `http://<IP>:5173` <br/>
-- Neue Domains in `vite.config.js` unter `allowedHosts` eintragen, sonst blockt Vite <br/>
+- systemctl daemon-reload <br/>
+- systemctl enable --now artmosphere <br/>
+- Nginx Proxy Manager: `web.artmosphere.cc` → `http://<IP>:3000` <br/>
 
 ## Update
 
-- sudo systemctl stop vite-dev <br/>
-- cd /root/ArtmosphereWebpage <br/>
+- cd /opt/artmosphere <br/>
 - git pull <br/>
-- reboot <br/>
+- npm ci <br/>
+- npm run build <br/>
+- systemctl restart artmosphere <br/>
