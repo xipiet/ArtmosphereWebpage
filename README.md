@@ -1,53 +1,46 @@
 # Artmosphere - Orakel
 
 - Web-Auftritt von Artmosphere <br/>
+- Statische Seite: `index.html`, `src/main.js`, `src/main.css`, gebaut mit Vite <br/>
 
-## Installation
+## Lokal entwickeln
 
-- git clone <br/>
+- Node 24 installieren <br/>
+- git clone https://github.com/xipiet/ArtmosphereWebpage.git <br/>
 - cd ArtmosphereWebpage <br/>
-- Node & npm installieren  <br/>
-- curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-- sudo apt install -y nodejs
-- npm init -y <br/>
 - npm install <br/>
-- npm install ogl <br/>
-- npm install gsap <br/>
-(sollte die benutzten packages automatisch installieren, ansonsten manuell)  <br/>
-- npm run dev -- --host <br/>
+- npm run dev <br/>
 
-### Aufsetzen auf dem Host
+`npm run dev` ist nur zum Entwickeln und gehört **nicht** auf den Server: Der Dev-Server liefert das ganze Projekt aus, auch `.git`. <br/>
+Bilder und Videos, die per Pfad eingebunden sind (`/pictures/...`), gehören nach `public/`, sonst fehlen sie im Build. <br/>
 
-Läuft als systemd-Service `vite-dev` auf Port 5173. <br/>
+## Aufsetzen auf dem Server
 
-- Repo nach `/root` klonen: `git clone https://github.com/xipiet/ArtmosphereWebpage.git`, dann Node + `npm install` wie oben <br/>
-- `/etc/systemd/system/vite-dev.service` anlegen:
+Die Seite wird mit `npm run build` gebaut, nginx liefert nur den Ordner `dist/` aus. <br/>
 
-```ini
-[Unit]
-Description=ViteDevServer
-After=network.target
+- apt install -y git nginx curl <br/>
+- curl -fsSL https://deb.nodesource.com/setup_24.x | bash - <br/>
+- apt install -y nodejs <br/>
+- git clone https://github.com/xipiet/ArtmosphereWebpage.git /opt/artmosphere <br/>
+- cd /opt/artmosphere <br/>
+- npm ci <br/>
+- npm run build <br/>
+- Inhalt von `/etc/nginx/sites-available/default` ersetzen durch:
 
-[Service]
-Type=simple
-User=root
-WorkingDirectory=/root/ArtmosphereWebpage
-ExecStart=/usr/bin/npm run dev -- --host
-Restart=always
-Environment=NODE_ENV=development
-
-[Install]
-WantedBy=multi-user.target
+```nginx
+server {
+    listen 80 default_server;
+    root /opt/artmosphere/dist;
+    index index.html;
+}
 ```
 
-- sudo systemctl daemon-reload <br/>
-- sudo systemctl enable --now vite-dev <br/>
-- Nginx Proxy Manager: `web.artmosphere.cc` → `http://<IP>:5173` <br/>
-- Neue Domains in `vite.config.js` unter `allowedHosts` eintragen, sonst blockt Vite <br/>
+- systemctl reload nginx <br/>
+- Nginx Proxy Manager: `web.artmosphere.cc` → `http://<IP>:80` <br/>
 
 ## Update
 
-- sudo systemctl stop vite-dev <br/>
-- cd /root/ArtmosphereWebpage <br/>
+- cd /opt/artmosphere <br/>
 - git pull <br/>
-- reboot <br/>
+- npm ci <br/>
+- npm run build <br/>
