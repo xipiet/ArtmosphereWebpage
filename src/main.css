@@ -674,6 +674,14 @@ body {
   margin: 0 auto;
 }
 
+/* Einzelnes Event mittig statt links in der ersten Spalte */
+.event-card:only-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: calc((1100px - 2rem) / 2);
+}
+
 .event-card {
   display: flex;
   background: linear-gradient(135deg, rgba(132, 0, 255, 0.1), rgba(132, 0, 255, 0.05));
