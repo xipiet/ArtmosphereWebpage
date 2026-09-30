@@ -742,26 +742,6 @@ body {
   font-size: 0.95rem;
 }
 
-.event-button {
-  background: linear-gradient(135deg, #8400ff, #ff00ff);
-  color: #fff;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 2rem;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.event-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(132, 0, 255, 0.4);
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-subtitle {
@@ -1066,12 +1046,6 @@ body {
 
   .info-item .value {
     font-size: 1rem;
-  }
-
-  .event-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
-    margin-top: 1.5rem;
   }
 }
 

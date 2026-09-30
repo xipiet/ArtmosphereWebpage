@@ -40,6 +40,7 @@ function createCarouselIndicators() {
   images.forEach((_, index) => {
     const indicator = document.createElement('button');
     indicator.className = 'indicator' + (index === 0 ? ' indicator--active' : '');
+    indicator.setAttribute('aria-label', `Bild ${index + 1}`);
     indicator.addEventListener('click', () => {
       goToSlide(index);
     });
@@ -109,7 +110,7 @@ function initNavigation() {
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const sectionId = e.target.getAttribute('data-section');
+      const sectionId = e.currentTarget.getAttribute('data-section');
       scrollToSection(sectionId);
       // Close burger menu after navigation
       closeBurgerMenu();

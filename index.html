@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artmosphere</title>
+    <meta name="description" content="Artmosphere: immersive Kunstinstallation, in der Besucher auf iPads zeichnen und ihre Bilder live Teil eines gemeinsamen Kunstwerks werden.">
     <link rel="icon" href="/src/logo.png" type="image/png">
     <link rel="stylesheet" href="/src/main.css">
 </head>
@@ -25,7 +26,7 @@
                 <button class="nav-link" data-section="events">Events</button>
             </nav>
 
-            <button class="burger-menu" id="burger-menu">
+            <button class="burger-menu" id="burger-menu" aria-label="Menü">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -59,8 +60,8 @@
                     <div class="carousel-overlay"></div>
                 </div>
                 
-                <button class="carousel-button carousel-button--prev" id="carousel-prev">◀</button>
-                <button class="carousel-button carousel-button--next" id="carousel-next">▶</button>
+                <button class="carousel-button carousel-button--prev" id="carousel-prev" aria-label="Vorheriges Bild">◀</button>
+                <button class="carousel-button carousel-button--next" id="carousel-next" aria-label="Nächstes Bild">▶</button>
 
                 <div class="carousel-indicators" id="carousel-indicators"></div>
                 <div class="carousel-counter" id="carousel-counter">1 / 5</div>
