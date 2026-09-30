@@ -1,10 +1,10 @@
 // Gallery Images
 const images = [
-  '/pictures/Sketch-Aquarium__high-1-scaled-1600x900.jpg',
-  '/pictures/teamLab-Borderless-IMG_1926-1536x1024.jpg',
-  '/pictures/Screenshot 2025-12-07 115125.png',
-  '/pictures/Screenshot 2025-12-07 115436.png',
-  '/pictures/Screenshot 2025-12-07 120059.png'
+  '/pictures/galerie-1.jpg',
+  '/pictures/galerie-2.jpg',
+  '/pictures/galerie-3.jpg',
+  '/pictures/galerie-4.jpg',
+  '/pictures/galerie-5.jpg'
 ];
 
 // Carousel State
