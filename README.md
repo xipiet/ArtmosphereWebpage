@@ -26,6 +26,7 @@ Die Seite wird mit `npm run build` gebaut. Ein systemd-Service startet `serve`, 
 - apt install -y git curl <br/>
 - curl -fsSL https://deb.nodesource.com/setup_24.x | bash - <br/>
 - apt install -y nodejs <br/>
+  (Node genau so über apt installieren, **nicht** über nvm: nvm-Node liegt in `/root` und ist für den Service unsichtbar, er bricht dann mit `node: No such file or directory` ab) <br/>
 - git clone https://github.com/xipiet/ArtmosphereWebpage.git /opt/artmosphere <br/>
 - cd /opt/artmosphere <br/>
 - npm ci <br/>
